@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.NewTestFragment">
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title_dashboard"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="30sp"
+                app:fontFamily="sans-serif"
+                android:layout_margin="10sp"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre de grossesses"
+                android:id="@+id/etPreg"
+                android:layout_margin="10sp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Taux de plasma"
+                android:id="@+id/etPlas"
+                android:layout_margin="10sp"
+                />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tension artérielle (mm Hg)"
+                android:id="@+id/etPress"
+                android:layout_margin="10sp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Epaisseur du pli cutané du triceps (mm)"
+                android:id="@+id/etThick"
+                android:layout_margin="10sp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Insuline sérique de 2 heures (mu U/ml)"
+                android:id="@+id/etIns"
+                android:layout_margin="10sp"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Indice de masse corporelle"
+                android:id="@+id/etIndex"
+                android:layout_margin="10sp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fonction de généalogie du diabète"
+                android:id="@+id/etFunc"
+                android:layout_margin="10sp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Age (Années)"
+                android:id="@+id/etAge"
+                android:layout_margin="10sp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirmer"
+                android:id="@+id/btSend"/>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
