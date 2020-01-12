@@ -1,5 +1,7 @@
 package com.example.diabetes.views;
 
+import android.app.ActionBar;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -29,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     static J48 tree = null;
     final Fragment mTreeFragment = new TreeFragment();
     final Fragment mNewTestFragment = new NewTestFragment();
-    final Fragment mNotificationsFragment = new NotificationsFragment();
 
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = mTreeFragment;
@@ -48,10 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     fm.beginTransaction().hide(active).show(mNewTestFragment).commit();
                     active = mNewTestFragment;
                     return true;
-                case R.id.navigation_notifications:
-                    fm.beginTransaction().hide(active).show(mNotificationsFragment).commit();
-                    active = mNotificationsFragment;
-                    return true;
+
             }
             return false;
         }
@@ -94,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        fm.beginTransaction().add(R.id.main_container, mNotificationsFragment, "3").hide(mNotificationsFragment).commit();
         fm.beginTransaction().add(R.id.main_container, mNewTestFragment, "2").hide(mNewTestFragment).commit();
         fm.beginTransaction().add(R.id.main_container, mTreeFragment, "1").commit();
 

@@ -33,6 +33,7 @@ public class NewTestFragment extends Fragment {
     private EditText mEtAge;
 
     private Button mbtSend;
+    private Button mBtReset;
 
     J48 tree = null;
 
@@ -57,37 +58,60 @@ public class NewTestFragment extends Fragment {
         mEtAge = (EditText) view.findViewById(R.id.etAge);
 
         mbtSend = (Button) view.findViewById(R.id.btSend);
+        mBtReset = (Button) view.findViewById(R.id.btReset);
 
         tree = MainActivity.tree;
 
         mbtSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double preg = Double.parseDouble(mEtPreg.getText().toString());
-                double plas = Double.parseDouble(mEtPlas.getText().toString());
-                double press = Double.parseDouble(mEtPress.getText().toString());
-                double thick = Double.parseDouble(mEtThick.getText().toString());
-                double ins = Double.parseDouble(mEtIns.getText().toString());
-                double index = Double.parseDouble(mEtIndex.getText().toString());
-                double func = Double.parseDouble(mEtFunc.getText().toString());
-                double age = Double.parseDouble(mEtAge.getText().toString());
+                if(isEmptyField(mEtPreg.getText().toString(), mEtPlas.getText().toString(), mEtPress.getText().toString(),
+                        mEtThick.getText().toString(), mEtIns.getText().toString(), mEtIndex.getText().toString(),
+                        mEtFunc.getText().toString(), mEtAge.getText().toString()))
+                {
+                    Toast.makeText(getActivity(), "Veuillez remplir tous les champs !", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    try {
+                        double preg = Double.parseDouble(mEtPreg.getText().toString());
+                        double plas = Double.parseDouble(mEtPlas.getText().toString());
+                        double press = Double.parseDouble(mEtPress.getText().toString());
+                        double thick = Double.parseDouble(mEtThick.getText().toString());
+                        double ins = Double.parseDouble(mEtIns.getText().toString());
+                        double index = Double.parseDouble(mEtIndex.getText().toString());
+                        double func = Double.parseDouble(mEtFunc.getText().toString());
+                        double age = Double.parseDouble(mEtAge.getText().toString());
 
-                double instanceClass = newInstance(preg, plas,  press, thick, ins, index, func, age, tree);
-                if(instanceClass == 0)
-                {
-                    Toast.makeText(getActivity(), "Le test est négatif !", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    if(instanceClass == 1)
-                    {
-                        Toast.makeText(getActivity(), "Le test est positif", Toast.LENGTH_LONG).show();
+                        double instanceClass = newInstance(preg, plas, press, thick, ins, index, func, age, tree);
+                        if (instanceClass == 0) {
+                            Toast.makeText(getActivity(), "Le test est négatif !", Toast.LENGTH_LONG).show();
+                        } else {
+                            if (instanceClass == 1) {
+                                Toast.makeText(getActivity(), "Le test est positif", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getActivity(), "Le test est erroné, veuillez réessayer", Toast.LENGTH_LONG).show();
+                            }
+                        }
                     }
-                    else
+                    catch(Exception e)
                     {
-                        Toast.makeText(getActivity(), "Le test est erroné, veuillez réessayer", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Valeur érronée !", Toast.LENGTH_LONG).show();
                     }
                 }
+            }
+        });
+
+        mBtReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEtPreg.setText("");
+                mEtPlas.setText("");
+                mEtPress.setText("");
+                mEtThick.setText("");
+                mEtIns.setText("");
+                mEtIndex.setText("");
+                mEtFunc.setText("");
+                mEtAge.setText("");
             }
         });
 
@@ -153,6 +177,18 @@ public class NewTestFragment extends Fragment {
             e.printStackTrace();
         }
     return -1;
+    }
+
+    public boolean isEmptyField(String preg, String plas, String press,
+                               String thick, String ins, String index,
+                               String func, String age)
+    {
+        if(preg.equals("") || plas.equals("") || press.equals("") || thick.equals("") ||
+                ins.equals("") || index.equals("") || func.equals("") || age.equals(""))
+        {
+            return true;
+        }
+        return false;
     }
 
 }

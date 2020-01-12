@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Diabetes</string>
+    <string name="app_name">Diabète</string>
     <string name="title_home">Arbre</string>
     <string name="title_dashboard">Nouvelle instance</string>
-    <string name="title_notifications">Notifications</string>
 </resources>
